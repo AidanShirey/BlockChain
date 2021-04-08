@@ -1,21 +1,15 @@
-#pragma once
-#include <string>
+#include "Block.h"
+#include <vector>
 using namespace std;
 
 class BlockChain{
-	Block genesisBlock;
-	int blockCount;
 public:
-	bool initBlockChain();
-	int getBlockCount();
-};
+	BlockChain();
 
+	void addBlock(Block newblock);
+private:
+	uint32_t diff;
+	vector<Block> chain;
 
-class Block {
-	string prev_hash;
-	string timestamp;
-	// Merkle mRoot;
-	string nonce;
-public:
-	bool createBlock();
+	Block getLastBlock() const;
 };
