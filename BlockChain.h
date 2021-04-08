@@ -6,7 +6,7 @@ class BlockChain{
 public:
 	BlockChain();
 
-	void addBlock(Block newblock);
+	void addBlock(Block newBlock);
 private:
 	uint32_t diff;
 	vector<Block> chain;

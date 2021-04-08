@@ -3,15 +3,18 @@
 #include <sstream>
 
 // bool initBlockChain(): returns true if a block is successfully created, false otherwise
-bool initBlockChain(){
-    bst * mnode;
-    Block block;
-    stringstream ss;
-    string stringtime;
-    time_t t = time(0);
-    char * time = ctime(&t);
-    ss << time;
-    ss >> stringtime;
-    block.setAttributes("0", stringtime, mnode, "nonce");
+BlockChain::BlockChain(){
+    chain.emplace_back(Block(0, "Genesis Block"));
+    diff = 6;
+}
+
+void BlockChain::addBlock(Block newBlock){
+    newBlock.prev_hash = getLastBlock().getHash();
+    newBlock.mineBlock(diff);
+    chain.push_back(newBlock);
+}
+
+Block BlockChain::getLastBlock() const{
+    return chain.back();
 }
 
